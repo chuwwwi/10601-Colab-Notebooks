@@ -18,7 +18,7 @@ def shuffle(X: np.ndarray, Y: np.ndarray) -> tuple:
     """
     Shuffles the training data.
     """
-    idx = np.random.permute(np.arange(len(X)), dtype=int)
+    idx = np.random.permutation(np.arange(len(X)), dtype=int)
 
     return X[idx], Y[idx]
 
