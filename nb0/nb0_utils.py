@@ -59,7 +59,7 @@ def train(model, loss_fn, optimizer, X, Y, n_epochs) -> list:
     """
     losses = list()
 
-    for epoch in tqdm(range(n_epochs), smoothing=0):
+    for epoch in tqdm(range(n_epochs), desc="PyTorch model training (epochs)", smoothing=0):
 
         total_loss = 0
 
