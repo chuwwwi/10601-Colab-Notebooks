@@ -12,7 +12,7 @@ def get_HW5_data():
     D = np.loadtxt(fname=f"{__name__[:-n]}/nb0/data/small_train_data.csv",
                    delimiter=",", dtype=float) # I know, not a good solution
     Y, X = D[:, 0], D[:, 1:]
-    return X, Y
+    return torch.from_numpy(X), torch.from_numpy(Y)
 
 class HW5Dataset(torch.utils.data.Dataset):
     def __init__(self):
