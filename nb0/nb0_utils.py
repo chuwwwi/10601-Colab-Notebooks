@@ -44,8 +44,9 @@ def visualize_model(model, X, Y, idx: int, k: int=5):
     yh = model(xi)
     D  = get_top_preds(yh.cpu().detach().numpy(), L)
 
-    print(f"Input image (label '{L[yi]}'):")
+    print(f"Input image (true label '{L[yi]}'):")
     plt.imshow(im, cmap="gray")
+    plt.show()
 
     print(f"Model top {k} predictions:")
     for i, (l, v) in enumerate(D.items()):
