@@ -8,8 +8,9 @@ def get_HW5_data():
     """
     Loads in the data from HW 5.
     """
-    D = np.loadtxt(fname=f"{__name__}/data/small_train_data.csv",
-                   delimiter=",", dtype=float)
+    n = len(".nb0_utils")
+    D = np.loadtxt(fname=f"{__name__[:-n]}/data/small_train_data.csv",
+                   delimiter=",", dtype=float) # I know, not a good solution
     Y, X = D[:, 0], D[:, 1:]
     return X, Y
 
