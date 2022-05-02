@@ -22,27 +22,29 @@ def shuffle(X: np.ndarray, Y: np.ndarray) -> tuple:
 
     return X[idx], Y[idx]
 
-def get_top_preds(yh: np.ndarray):
-    L = ["a", "e", "g", "i", "l", "n", "o", "r", "t", "u"]
+def get_top_preds(yh: np.ndarray, L):
     Y = np.array(yh)
 
-    sorted_pairs = sorted(zip(Y, L))
+    sorted_pairs = reversed(sorted(zip(Y, L)))
     D = {k: v for v, k in sorted_pairs}
     return D
 
-def visualize_model(model, X, idx: int, k: int=5):
+def visualize_model(model, X, Y, idx: int, k: int=5):
     """
     Visualizes the model.
     """
+    L = ["a", "e", "g", "i", "l", "n", "o", "r", "t", "u"]
     model.eval()
 
     xi = X[idx]
     im = np.reshape(xi, (16, 8))
 
-    yh = model(xi)
-    D  = get_top_preds(yh.cpu().detach().numpy())
+    yi = int(Y[idx].detach())
 
-    print(f"Input image:")
+    yh = model(xi)
+    D  = get_top_preds(yh.cpu().detach().numpy(), L)
+
+    print(f"Input image (label '{L[yi]}'):")
     plt.imshow(im, cmap="gray")
 
     print(f"Model top {k} predictions:")
@@ -72,6 +74,5 @@ def train(model, loss_fn, optimizer, X, Y, n_epochs) -> list:
             total_loss += loss.item()
         
         losses.append(total_loss)
-    print(f"Epoch {epoch} total loss: {total_loss}")
 
     return losses
