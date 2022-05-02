@@ -63,7 +63,8 @@ def train(model, loss_fn, optimizer, X, Y, n_epochs) -> list:
 
         total_loss = 0
 
-        for x_i, y_i in shuffle(X, Y):
+        X, Y = shuffle(X, Y)
+        for x_i, y_i in zip(X, Y):
             optimizer.zero_grad()
 
             y_hat = model(x_i)
