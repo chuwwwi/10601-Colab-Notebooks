@@ -14,24 +14,6 @@ def get_HW5_data():
     Y, X = D[:, 0], D[:, 1:]
     return torch.from_numpy(X), torch.from_numpy(Y)
 
-class HW5Dataset(torch.utils.data.Dataset):
-    def __init__(self):
-        super(HW5Dataset, self).__init__()
-        X, Y = get_HW5_data()
-        self.X = torch.from_numpy(X)
-        self.Y = torch.from_numpy(Y)
-        self.n = len(X)
-
-    def __getitem__(self, key):
-        return self.X[key], self.Y[key]
-    
-    def __len__(self):
-        return self.n
-
-HW5Dataloader = torch.utils.data.DataLoader(dataset=HW5Dataset,
-                                            batch_size=1,
-                                            shuffle=True)
-
 def shuffle(X: np.ndarray, Y: np.ndarray) -> tuple:
     """
     Shuffles the training data.
