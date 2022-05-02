@@ -10,9 +10,9 @@ def get_HW5_data():
     """
     n = len(".nb0.nb0_utils")
     D = np.loadtxt(fname=f"{__name__[:-n]}/nb0/data/small_train_data.csv",
-                   delimiter=",", dtype=float) # I know, not a good solution
+                   delimiter=",", dtype=np.float64) # I know, not a good solution
     Y, X = D[:, 0], D[:, 1:]
-    return torch.from_numpy(X), torch.from_numpy(Y)
+    return torch.from_numpy(X).type(torch.float), torch.from_numpy(Y).type(torch.long)
 
 def shuffle(X: np.ndarray, Y: np.ndarray) -> tuple:
     """
