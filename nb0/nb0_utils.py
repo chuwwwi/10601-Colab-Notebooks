@@ -28,9 +28,9 @@ class HW5Dataset(torch.utils.data.Dataset):
     def __len__(self):
         return self.n
 
-HW5Dataloader = torch.utils.DataLoader(dataset=HW5Dataset,
-                                       batch_size=1,
-                                       shuffle=True)
+HW5Dataloader = torch.utils.data.DataLoader(dataset=HW5Dataset,
+                                            batch_size=1,
+                                            shuffle=True)
 
 def shuffle(X: np.ndarray, Y: np.ndarray) -> tuple:
     """
