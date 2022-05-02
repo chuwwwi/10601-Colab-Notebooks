@@ -30,7 +30,7 @@ def get_top_preds(yh: np.ndarray):
     D = {k: v for v, k in sorted_pairs}
     return D
 
-def visualize_model(model, X: np.ndarray, idx: int, k: int=5):
+def visualize_model(model, X, idx: int, k: int=5):
     """
     Visualizes the model.
     """
@@ -40,7 +40,7 @@ def visualize_model(model, X: np.ndarray, idx: int, k: int=5):
     im = np.reshape(xi, (16, 8))
 
     yh = model(xi)
-    D  = get_top_preds(yh)
+    D  = get_top_preds(yh.cpu().detach().numpy())
 
     print(f"Input image:")
     plt.imshow(im, cmap="gray")
